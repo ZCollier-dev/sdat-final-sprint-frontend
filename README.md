@@ -1,12 +1,29 @@
-# React + Vite
+# Airport System Frontend (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Notes for Team:
+A clean, framework-free CSS frontend for the Spring Boot Airport API.  
+Includes public dashboards, tables, prebuilt queries, and an admin area with CRUD.
 
-Currently, two official plugins are available:
+## Quick start
+```bash
+npm i
+echo "VITE_API_URL=http://localhost:8080" > .env.local  # or rely on /api proxy
+npm run dev
+```
+- Dev proxy forwards `/api/*` to `http://localhost:8080` (see `vite.config.js`).
+- For production, set `VITE_API_URL` to your backend URL and build.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Structure
+- `src/layouts/PublicLayout.jsx` – public nav & layout
+- `src/layouts/AdminLayout.jsx` – admin nav & layout
+- `src/components/RequireAuth.jsx` – route guard using localStorage token
+- `src/pages/public/*` – user-facing pages
+- `src/pages/admin/*` – admin CRUD
+- `src/styles/base.css` – all classic CSS (no Tailwind/MUI)
 
-## Expanding the ESLint configuration
+## Admin auth
+This starter assumes a JWT/token via `/auth/login`. Replace the login call in `pages/auth/Login.jsx` with the real endpoint.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Notes
+- Update field names and endpoints to match your backend DTOs.
+- Charts use `recharts`.
