@@ -2,7 +2,7 @@ import React from 'react'
 import { useCrud, InlineEdit } from './_crud.jsx'
 
 export default function ManageAirlines(){
-  const { rows, form, loading, error, onChange, create, update, remove } = useCrud('/airlines')
+  const { rows, form, loading, error, onChange, create, update, remove } = useCrud('/airline')
 
   return (
     <div>

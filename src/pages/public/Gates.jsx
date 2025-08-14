@@ -11,7 +11,7 @@ export default function Gates() {
 
   React.useEffect(()=>{
     setLoading(true)
-    api.get('/gates').then(r=>setRows(r.data)).catch(e=>setError(e.message)).finally(()=>setLoading(false))
+    api.get('/gate').then(r=>setRows(r.data)).catch(e=>setError(e.message)).finally(()=>setLoading(false))
   },[])
 
   return (

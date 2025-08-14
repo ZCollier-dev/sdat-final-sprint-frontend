@@ -18,7 +18,6 @@ export default function PublicLayout(){
           <A to="/airports">Airports</A>
           <A to="/cities">Cities</A>
           <A to="/passengers">Passengers</A>
-          <A to="/queries">Queries</A>
           <A to="/aircraft">Aircraft</A>
           <A to="/airlines">Airlines</A>
           <A to="/flights">Flights</A>

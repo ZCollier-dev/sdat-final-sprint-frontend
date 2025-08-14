@@ -11,7 +11,7 @@ export default function Airlines() {
 
   React.useEffect(()=>{
     setLoading(true)
-    api.get('/airlines').then(r=>setRows(r.data)).catch(e=>setError(e.message)).finally(()=>setLoading(false))
+    api.get('/airline').then(r=>setRows(r.data)).catch(e=>setError(e.message)).finally(()=>setLoading(false))
   },[])
 
   return (
