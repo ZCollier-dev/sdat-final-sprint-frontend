@@ -10,7 +10,6 @@ import Gates from './pages/public/Gates'
 import Airports from './pages/public/Airports'
 import Cities from './pages/public/Cities'
 import Passengers from './pages/public/Passengers'
-import Queries from './pages/public/Queries'
 import Login from './pages/auth/Login'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import ManageCities from './pages/admin/ManageCities'
@@ -38,7 +37,6 @@ export default function App(){
         <Route path="airports" element={<Airports />} />
         <Route path="cities" element={<Cities />} />
         <Route path="passengers" element={<Passengers />} />
-        <Route path="queries" element={<Queries />} />
         <Route path="aircraft" element={<Aircraft />} />
         <Route path="airlines" element={<Airlines />} />
         <Route path="flights" element={<Flights />} />

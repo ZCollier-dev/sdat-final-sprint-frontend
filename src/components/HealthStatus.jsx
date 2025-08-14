@@ -1,22 +1,62 @@
-import React from 'react'
-import api from '../api/client'
-export default function HealthStatus(){
-  const [apiStatus, setApi] = React.useState('checking')
-  const [dbStatus, setDb] = React.useState('unknown')
-  React.useEffect(()=>{
-    (async ()=>{
-      try{ await api.get('/airports'); setApi('up') }catch{ setApi('down') }
-      try{
-        const base = import.meta.env.VITE_API_URL || '/api'
-        const r = await fetch(base + '/actuator/health')
-        if(r.ok){ const j = await r.json(); setDb(j?.components?.db?.status?.toLowerCase?.() || 'up') }
-      }catch{}
-    })()
-  },[])
+import React, { useState, useEffect } from 'react';
+import api from '../api/client';
+
+export default function HealthStatus() {
+  const [apiStatus, setApiStatus] = useState('checking');
+  const [dbStatus, setDbStatus] = useState('unknown');
+
+  useEffect(() => {
+    const checkHealth = async () => {
+      // Check API status
+      try {
+        await api.get('/airports');
+        setApiStatus('up');
+      } catch {
+        setApiStatus('down');
+      }
+
+      // Check DB status via Actuator
+      try {
+        const baseUrl = import.meta.env.VITE_API_URL || '/api';
+        const response = await fetch(`${baseUrl}/actuator/health`);
+
+        if (response.ok) {
+          const data = await response.json();
+          const dbState = data?.components?.db?.status?.toLowerCase?.() || 'up';
+          setDbStatus(dbState);
+        } else {
+          setDbStatus('unknown');
+        }
+      } catch {
+        setDbStatus('unknown');
+      }
+    };
+
+    checkHealth();
+  }, []);
+
   return (
     <div className="row">
-      <div className="badge">API: <b className={apiStatus==='up'?'success':'danger'}>{apiStatus}</b></div>
-      <div className="badge">DB: <b className={dbStatus==='up'?'success':'warning'}>{dbStatus}</b></div>
+      <div className="badge">
+        API:{' '}
+        <b className={apiStatus === 'up' ? 'success' : 'danger'}>
+          {apiStatus}
+        </b>
+      </div>
+      <div className="badge">
+        DB:{' '}
+        <b
+          className={
+            dbStatus === 'up'
+              ? 'success'
+              : dbStatus === 'down'
+              ? 'danger'
+              : 'warning'
+          }
+        >
+          {dbStatus}
+        </b>
+      </div>
     </div>
-  )
+  );
 }
