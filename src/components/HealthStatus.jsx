@@ -15,13 +15,13 @@ export default function HealthStatus() {
 				setApiStatus("down");
 			}
 
-			// Check DB status via Actuator
+			// Check DB status
 			try {
 				const baseUrl = import.meta.env.VITE_API_URL || "/api";
-				const response = await fetch(`${baseUrl}/api/db/check`);
+				const response = await fetch(`${baseUrl}/api/db-check`);
+				const data = await response.json();
 
-				if (response.ok) {
-					const data = await response.json();
+				if (data.components.db.status.toLowerCase() === "up") {
 					const dbState = data?.components?.db?.status?.toLowerCase?.() || "up";
 					setDbStatus(dbState);
 				} else {
