@@ -5,6 +5,8 @@ export default function ManageAircraft() {
 	const { rows, form, loading, error, onChange, create, update, remove } =
 		useCrud("/aircraft");
 
+	//add capacity
+
 	return (
 		<div>
 			<h2>Aircraft</h2>
@@ -15,6 +17,16 @@ export default function ManageAircraft() {
 						className="input"
 						name="model"
 						value={form.model || ""}
+						onChange={onChange}
+						required
+					/>
+				</label>
+				<label>
+					Capacity{" "}
+					<input
+						className="input"
+						name="capacity"
+						value={form.capacity || ""}
 						onChange={onChange}
 						required
 					/>
@@ -41,6 +53,7 @@ export default function ManageAircraft() {
 						<tr>
 							<th className="th">ID</th>
 							<th className="th">Model</th>
+							<th className="th">Capacity</th>
 							<th className="th">Airline ID</th>
 							<th className="th">Actions</th>
 						</tr>
@@ -53,6 +66,12 @@ export default function ManageAircraft() {
 									<InlineEdit
 										value={r.model}
 										onSave={(v) => update(r.id, { ...r, model: v })}
+									/>
+								</td>
+								<td className="td">
+									<InlineEdit
+										value={r.capacity}
+										onSave={(v) => update(r.id, { ...r, capacity: v })}
 									/>
 								</td>
 								<td className="td">

@@ -7,9 +7,12 @@ const columns = [
 	{ key: "fromAirport", header: "From" },
 	{ key: "fromGate", header: "Gate" },
 	{ key: "departureTime", header: "Time" },
+	{ key: "departureStatus", header: "Status" },
 	{ key: "toAirport", header: "To" },
 	{ key: "toGate", header: "Gate" },
 	{ key: "arrivalTime", header: "Time" },
+	{ key: "arrivalStatus", header: "Status" },
+	{ key: "aircraft", header: "Aircraft" },
 ];
 
 export default function Flights() {
@@ -28,9 +31,12 @@ export default function Flights() {
 						fromAirport: flight.departure.gate.airport.name,
 						fromGate: flight.departure.gate.gateNumber,
 						departureTime: flight.departure.departureTime,
+						departureStatus: flight.departure.status,
 						toAirport: flight.arrival.gate.airport.name,
 						toGate: flight.arrival.gate.gateNumber,
 						arrivalTime: flight.arrival.arrivalTime,
+						arrivalStatus: flight.arrival.status,
+						aircraft: flight.aircraft.model,
 					}))
 				)
 			)

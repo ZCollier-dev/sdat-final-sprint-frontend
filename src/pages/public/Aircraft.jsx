@@ -5,6 +5,7 @@ import DataTable from "../../components/DataTable";
 const columns = [
 	{ key: "id", header: "ID" },
 	{ key: "model", header: "Model" },
+	{ key: "capacity", header: "Capacity" },
 	{ key: "airlineName", header: "Airline" },
 ];
 

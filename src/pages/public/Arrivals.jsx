@@ -8,6 +8,7 @@ const columns = [
 	{ key: "fromAirport", header: "From" },
 	{ key: "gate", header: "Gate" },
 	{ key: "arrivalTime", header: "Time" },
+	{ key: "status", header: "Status" },
 ];
 
 export default function Arrivals() {
@@ -27,6 +28,7 @@ export default function Arrivals() {
 						fromAirport: arrival.flight.departure.gate.airport.name,
 						gate: arrival.gate.gateNumber,
 						arrivalTime: arrival.arrivalTime,
+						status: arrival.status,
 					}))
 				)
 			)
