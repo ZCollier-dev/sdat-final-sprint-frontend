@@ -22,17 +22,17 @@ export default function LinkObjects() {
 		try {
 			switch (linkType) {
 				case "AirportAircraft": {
-					const { data } = await api.post(`/airports/link-aircraft/${left}`, {
+					const { data } = await api.put(`/airports/link-aircraft/${left}`, {
 						right,
 					});
 				}
 				case "PassengerAirport": {
-					const { data } = await api.post(`/passengers/link-airport/${left}`, {
+					const { data } = await api.put(`/passengers/link-airport/${left}`, {
 						right,
 					});
 				}
 				case "PassengerFlight": {
-					const { data } = await api.post(`/passengers/link-flight/${left}`, {
+					const { data } = await api.put(`/passengers/link-flight/${left}`, {
 						right,
 					});
 				}
