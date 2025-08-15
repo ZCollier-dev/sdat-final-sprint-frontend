@@ -31,6 +31,15 @@ export default function ManageFlights() {
 						onChange={onChange}
 					/>
 				</label>
+				<label>
+					Aircraft ID{" "}
+					<input
+						className="input"
+						name="aircraftId"
+						value={form.aircraftId || ""}
+						onChange={onChange}
+					/>
+				</label>
 				<button className="btn" type="submit">
 					Add Flight
 				</button>
@@ -45,6 +54,7 @@ export default function ManageFlights() {
 							<th className="th">ID</th>
 							<th className="th">Departure ID</th>
 							<th className="th">Arrival ID</th>
+							<th className="th">Aircraft ID</th>
 							<th className="th">Actions</th>
 						</tr>
 					</thead>
@@ -62,6 +72,12 @@ export default function ManageFlights() {
 									<InlineEdit
 										value={r.arrivalId}
 										onSave={(v) => update(r.id, { ...r, arrivalId: v })}
+									/>
+								</td>
+								<td className="td">
+									<InlineEdit
+										value={r.aircraftId}
+										onSave={(v) => update(r.id, { ...r, aircraftId: v })}
 									/>
 								</td>
 								<td className="td">

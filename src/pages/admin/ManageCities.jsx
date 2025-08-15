@@ -5,6 +5,8 @@ export default function ManageCities() {
 	const { rows, loading, error, form, onChange, create, update, remove } =
 		useCrud("/cities");
 
+	//add state, population
+
 	return (
 		<div>
 			<h2>Cities</h2>
@@ -15,6 +17,26 @@ export default function ManageCities() {
 						className="input"
 						name="name"
 						value={form.name || ""}
+						onChange={onChange}
+						required
+					/>
+				</label>
+				<label>
+					State/Province{" "}
+					<input
+						className="input"
+						name="state"
+						value={form.state || ""}
+						onChange={onChange}
+						required
+					/>
+				</label>
+				<label>
+					Population{" "}
+					<input
+						className="input"
+						name="population"
+						value={form.population || ""}
 						onChange={onChange}
 						required
 					/>
@@ -32,6 +54,8 @@ export default function ManageCities() {
 						<tr>
 							<th className="th">ID</th>
 							<th className="th">Name</th>
+							<th className="th">State/Province</th>
+							<th className="th">Population</th>
 							<th className="th">Actions</th>
 						</tr>
 					</thead>
@@ -43,6 +67,18 @@ export default function ManageCities() {
 									<InlineEdit
 										value={r.name}
 										onSave={(v) => update(r.id, { ...r, name: v })}
+									/>
+								</td>
+								<td className="td">
+									<InlineEdit
+										value={r.state}
+										onSave={(v) => update(r.id, { ...r, state: v })}
+									/>
+								</td>
+								<td className="td">
+									<InlineEdit
+										value={r.population}
+										onSave={(v) => update(r.id, { ...r, population: v })}
 									/>
 								</td>
 								<td className="td">

@@ -5,6 +5,7 @@ import DataTable from "../../components/DataTable";
 const columns = [
 	{ key: "id", header: "ID" },
 	{ key: "name", header: "Name" },
+	{ key: "state", header: "State/Province" },
 ];
 
 export default function Cities() {

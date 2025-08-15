@@ -5,6 +5,8 @@ export default function ManageDepartures() {
 	const { rows, form, loading, error, onChange, create, update, remove } =
 		useCrud("/departures");
 
+	//add status
+
 	return (
 		<div>
 			<h2>Departures</h2>
@@ -37,6 +39,15 @@ export default function ManageDepartures() {
 						onChange={onChange}
 					/>
 				</label>
+				<label>
+					Status{" "}
+					<input
+						className="input"
+						name="status"
+						value={form.status || ""}
+						onChange={onChange}
+					/>
+				</label>
 				<button className="btn" type="submit">
 					Add Departures
 				</button>
@@ -52,6 +63,7 @@ export default function ManageDepartures() {
 							<th className="th">Flight ID</th>
 							<th className="th">Gate ID</th>
 							<th className="th">Time</th>
+							<th className="th">Status</th>
 							<th className="th">Actions</th>
 						</tr>
 					</thead>
@@ -75,6 +87,12 @@ export default function ManageDepartures() {
 									<InlineEdit
 										value={r.departureTime}
 										onSave={(v) => update(r.id, { ...r, departureTime: v })}
+									/>
+								</td>
+								<td className="td">
+									<InlineEdit
+										value={r.status}
+										onSave={(v) => update(r.id, { ...r, status: v })}
 									/>
 								</td>
 								<td className="td">
