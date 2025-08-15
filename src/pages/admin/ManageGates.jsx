@@ -4,32 +4,33 @@ import { useCrud, InlineEdit } from "./_crud.jsx";
 export default function ManageGates() {
 	const { rows, form, loading, error, onChange, create, update, remove } =
 		useCrud("/gates");
+	// id, gateNumber, airportId
 
 	return (
 		<div>
 			<h2>Gates</h2>
 			<form onSubmit={create} className="row controls mt-8">
 				<label>
-					Name{" "}
+					Gate Number{" "}
 					<input
 						className="input"
-						name="name"
-						value={form.name || ""}
+						name="gateNumber"
+						value={form.gateNumber || ""}
 						onChange={onChange}
 						required
 					/>
 				</label>
 				<label>
-					Terminal{" "}
+					Airport ID{" "}
 					<input
 						className="input"
-						name="terminal"
-						value={form.terminal || ""}
+						name="airportId"
+						value={form.airportId || ""}
 						onChange={onChange}
 					/>
 				</label>
 				<button className="btn" type="submit">
-					Add Gates
+					Add Gate
 				</button>
 				{loading && <span className="badge">Working...</span>}
 				{error && <span className="badge danger">Error: {error}</span>}
@@ -40,8 +41,8 @@ export default function ManageGates() {
 					<thead>
 						<tr>
 							<th className="th">ID</th>
-							<th className="th">Gate</th>
-							<th className="th">Terminal</th>
+							<th className="th">Gate Number</th>
+							<th className="th">Airport ID</th>
 							<th className="th">Actions</th>
 						</tr>
 					</thead>
@@ -51,14 +52,14 @@ export default function ManageGates() {
 								<td className="td">{r.id}</td>
 								<td className="td">
 									<InlineEdit
-										value={r.name}
-										onSave={(v) => update(r.id, { ...r, name: v })}
+										value={r.gateNumber}
+										onSave={(v) => update(r.id, { ...r, gateNumber: v })}
 									/>
 								</td>
 								<td className="td">
 									<InlineEdit
-										value={r.terminal}
-										onSave={(v) => update(r.id, { ...r, terminal: v })}
+										value={r.airportId}
+										onSave={(v) => update(r.id, { ...r, airportId: v })}
 									/>
 								</td>
 								<td className="td">
