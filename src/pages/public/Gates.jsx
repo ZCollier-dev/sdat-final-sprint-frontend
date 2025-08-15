@@ -4,8 +4,8 @@ import DataTable from "../../components/DataTable";
 
 const columns = [
 	{ key: "id", header: "ID" },
-	{ key: "name", header: "Gate" },
-	{ key: "terminal", header: "Terminal" },
+	{ key: "gateNumber", header: "Gate" },
+	{ key: "airportName", header: "Airport" },
 ];
 
 export default function Gates() {
@@ -17,7 +17,14 @@ export default function Gates() {
 		setLoading(true);
 		api
 			.get("/gates")
-			.then((r) => setRows(r.data))
+			.then((r) =>
+				setRows(
+					r.data.map((gate) => ({
+						...gate,
+						airportName: gate.airport.name,
+					}))
+				)
+			)
 			.catch((e) => setError(e.message))
 			.finally(() => setLoading(false));
 	}, []);
